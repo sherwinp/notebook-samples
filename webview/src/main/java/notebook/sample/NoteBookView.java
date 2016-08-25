@@ -1,5 +1,7 @@
 package notebook.sample;
 
+import java.net.URL;
+
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
@@ -20,7 +22,7 @@ public class NoteBookView extends Application {
         stage.setTitle("Web View");
         scene = new Scene(new Browser(),750,500, Color.web("#666970"));
         stage.setScene(scene);
-        scene.getStylesheets().add("webviewsample/BrowserToolbar.css");        
+        scene.getStylesheets().add(getClass().getResource("layout.css").toExternalForm());  
         stage.show();
     }
  
@@ -37,7 +39,8 @@ class Browser extends Region {
         //apply the styles
         getStyleClass().add("browser");
         // load the web page
-        webEngine.load("http://www.oracle.com/products/index.html");
+        URL url = getClass().getResource("Index.html");
+        webEngine.load(url.toExternalForm());
         //add the web view to the scene
         getChildren().add(browser);
  
